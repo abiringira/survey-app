@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const informationSchema = new Schema({
 	date: { type:String },
 	village: { type:String },
@@ -207,9 +209,11 @@ const informationSchema = new Schema({
 
 });
 
+mongoose.connect('mongodb://127.0.0.1:27017/survey'); 
+
+const information  = mongoose.model('Information', informationSchema);
+
 exports.createUser = (userInfo) => {
-	const information = new Information(userInfo);
+	 information = new Information(userInfo);
 	return information.save();
            };
-
-export default InformationModel
