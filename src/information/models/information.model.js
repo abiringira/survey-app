@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+mongoose.connect('mongodb+srv://abiringira:abiringira@survey.bnohfjm.mongodb.net/?retryWrites=true&w=majority'); 
+
+const Schema = mongoose.Schema;
+
 const informationSchema = new Schema({
 	date: { type:String },
 	village: { type:String },
@@ -38,7 +42,7 @@ const informationSchema = new Schema({
     specificSkillsWorkersNeeded: {type: String,required:false},
     hasWomenYouthDairyCattleChallenges: {type: Boolean,required:false},
     womenYouthChallengeExample: {type: String,required:false},
-    hasPersonWithDisability: {type: String,required:false},
+    hasPersonWithDisability: {type: Boolean,required:false},
     personsWithDisability: {type: Number,required:false},
     hasExpansionPlanning: {type: Boolean,required:false},
     hasRecruitmentPlanning: {type: Boolean,required:false},
@@ -82,7 +86,7 @@ const informationSchema = new Schema({
     pigsSpecificSkillsWorkersNeeded: {type: String,required:false},
     hasPigsWomenYouthDairyCattleChallenges: {type: Boolean,required:false},
     pigsWomenYouthChallengeExample: {type: String,required:false},
-    hasPigsPersonWithDisability: {type: String,required:false},
+    hasPigsPersonWithDisability: {type: Boolean,required:false},
     pigsPersonsWithDisability: {type: Number,required:false},
     hasPigsExpansionPlanning: {type: Boolean,required:false},
     hasPigsRecruitmentPlanning: {type: Boolean,required:false},
@@ -109,7 +113,7 @@ const informationSchema = new Schema({
     poultrySpecificSkillsWorkersNeeded: {type: String,required:false},
     hasPoultryWomenYouthDairyCattleChallenges: {type: Boolean,required:false},
     poultryWomenYouthChallengeExample: {type: String,required:false},
-    hasPoultryPersonWithDisability: {type: String,required:false},
+    hasPoultryPersonWithDisability: {type: Boolean,required:false},
     poultryPersonsWithDisability: {type: Number,required:false},
     hasPoultryExpansionPlanning: {type: Boolean,required:false},
     hasPoultryRecruitmentPlanning: {type: Boolean,required:false},
@@ -138,7 +142,7 @@ const informationSchema = new Schema({
     goatSpecificSkillsWorkersNeeded: {type: String,required:false},
     hasGoatWomenYouthDairyCattleChallenges: {type: Boolean,required:false},
     goatWomenYouthChallengeExample: {type: String,required:false},
-    hasGoatPersonWithDisability: {type: String,required:false},
+    hasGoatPersonWithDisability: {type: Boolean,required:false},
     goatPersonsWithDisability: {type: Number,required:false},
     hasGoatExpansionPlanning: {type: Boolean,required:false},
     hasGoatRecruitmentPlanning: {type: Boolean,required:false},
@@ -165,7 +169,7 @@ const informationSchema = new Schema({
     rabbitSpecificSkillsWorkersNeeded: {type: String,required:false},
     hasRabbitWomenYouthDairyCattleChallenges: {type: Boolean,required:false},
     rabbitWomenYouthChallengeExample: {type: String,required:false},
-    hasRabbitPersonWithDisability: {type: String,required:false},
+    hasRabbitPersonWithDisability: {type: Boolean,required:false},
     rabbitPersonsWithDisability: {type: Number,required:false},
     hasRabbitExpansionPlanning: {type: Boolean,required:false},
     hasRabbitRecruitmentPlanning: {type: Boolean,required:false},
@@ -209,11 +213,11 @@ const informationSchema = new Schema({
 
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/survey'); 
 
-const information  = mongoose.model('Information', informationSchema);
+
+const Information  = mongoose.model('Information', informationSchema);
 
 exports.createUser = (userInfo) => {
-	 information = new Information(userInfo);
+	const information = new Information(userInfo);
 	return information.save();
            };
